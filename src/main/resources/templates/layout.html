@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<title>Page Layout</title>
+	<link rel="stylesheet" href="../static/css/style.css" th:ref="@{/css/style.css}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">MonSite</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a th:href="@{/user/index}">Accueil</a></li>
+				<li><a th:href="@{/admin/saveFormProduit}">Produits</a></li>
+				<li><a href="#">Categories</a></li>
+				<li><a href="#">Catalogue</a></li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li><a th:href="@{/login?logout}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<section layout:fragment="content1">
+	
+	</section>
+	
+	<footer>
+	
+	footer
+	
+	</footer>
+	
+	<!-- jQuery library -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Produits</title>
+<!-- 	
+	<link rel="stylesheet" href="../static/nodes_modules/bootstrap/dist/css/bootstrap.min.css" th:ref="@{/nodes_modules/bootstrap/dist/css/bootstrap.min.css}">
+ 	-->
+
+<!-- <link rel="stylesheet" href="../static/css/style.css" th:ref="@{/css/style.css}">
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+
+</head>
+<body>
+	<div layout:fragment="content1">
+		<div class="container col-md-10 col-md-offset-1">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4>Liste des produits</h4>
+				</div>
+				<div class="panel-body">
+					<form th:action="@{/user/index}" method="get">
+						<label>Mot-clé:</label> <input type="text" name="motCle"
+							th:value="${motCle}">
+						<button type="submit" class="btn btn-primary">Chercher</button>
+					</form>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<tr>
+							<th>ID</th>
+							<th>Désignation</th>
+							<th>Prix</th>
+							<th>Quantité</th>
+							<th></th>
+							<th></th>
+						</tr>
+
+						<c:forEach items="${produitModel.produits}" var="p">
+							<tr th:each="p:${listProduits}">
+								<td th:text="${p.id}"></td>
+								<td th:text="${p.designation}"></td>
+								<td th:text="${p.prix}"></td>
+								<td th:text="${p.quantite}"></td>
+								<td><a class="btn btn-danger"
+									onclick="return confirm('Etes-vous certain(e) de vouloir supprimer ce produit ?')"
+									th:href="@{/admin/delete(id=${p.id}, page=${currentPage}, motCle=${motCle})}">Supprimer
+								</a></td>
+								<td><a class="btn btn-primary" th:href="@{/admin/editFormProduit(id=${p.id})}">Modifier</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<ul class="nav nav-pills">
+						<li th:class="${currentPage==status.index}?'active' : ''"
+							th:each="page,status:${pages}"><a
+							th:href="@{/user/index(page=${status.index}, motCle=${motCle})}"
+							th:text="${status.index}"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
